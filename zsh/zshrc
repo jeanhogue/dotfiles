@@ -1,0 +1,76 @@
+TERM=xterm-256color
+
+# If you come from bash you might have to change your $PATH.
+export PATH=~/Documents/VimNotes/bin/:~/.toolbox/bin/:/apollo/env/SDETools/bin:/usr/local/bin:$PATH
+
+# When pasting text, no need to highlight
+zle_highlight=('paste:none')
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+plugins=(zsh-autosuggestions zsh-syntax-highlighting) # removed git from the list
+
+ZSH_THEME="robbyrussell"
+export ZSH=/Users/jhogue/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
+# Right prompt to show timestamp. See https://linux.die.net/man/1/zshmisc
+RPROMPT="%{$fg_bold[blue]%}[%D{%Y/%m/%f} %*]%{$reset_color%}"
+
+# Stars (*) are colored dark blue by default which is hard to see
+ZSH_HIGHLIGHT_STYLES[globbing]=fg=blue,bold
+
+bindkey '^h' autosuggest-accept
+# yellow autosuggest text
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=226'
+
+# completion of commands
+zstyle ':completion:*' menu select
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' list-colors '=(#b)*(XX *)=32=31' '=*=32'
+zstyle ':completion:*:descriptions' format '%B%d%b'
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+
+HYPHEN_INSENSITIVE="true"
+ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
+# command execution time stamp shown in the `history` command output.
+HIST_STAMPS="yyyy-mm-dd hh:MM:SS"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPS="--extended"
+export FZF_DEFAULT_COMMAND="fd --type f"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# Quick vim startup
+alias v=mvim
+
+alias bb=brazil-build
+alias bq='brazil-build quick_build'
+alias bbit=brazil-build test-integration-assert
+alias bba='brazil-recursive-cmd --allPackages brazil-build'
+alias bc='brazil-build clean'
+alias bca='brazil-recursive-cmd --allPackages --reverse brazil-build clean'
+alias bvs='brazil vs'
+alias bws='brazil ws'
+alias sam="brazil-build-tool-exec sam"
+
+alias gitlog="git log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+alias gs='git status'
+alias gb='git branch'
+alias ga='git add .'
+alias gc='git commit -m w '
+alias gco='git checkout '
+alias gr='git rebase -i HEAD~2'
+alias gr3='git rebase -i HEAD~3'
+alias gr4='git rebase -i HEAD~4'
+alias gr5='git rebase -i HEAD~5'
+alias gr6='git rebase -i HEAD~6'
+alias gd='git diff'
+
+alias sshjs='ssh dev-dsk-jhogue-2b-264f79e6.us-west-2.amazon.com'
+
+alias odin="ssh -L 2009:localhost:2009 jhogue.aka.corp.amazon.com -f -N"
