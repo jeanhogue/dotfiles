@@ -6,6 +6,6 @@ source ~/dotfiles/vim/keymappings.vim
 source ~/dotfiles/vim/autocmds.vim
 source ~/dotfiles/vim/snippets.vim
 
-if version > 730
+if $CLOUDDESKTOP == 0
     echom 'Config loaded'
 endif

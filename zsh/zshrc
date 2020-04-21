@@ -1,6 +1,6 @@
 TERM=xterm-256color
 
-CLOUDDESKTOP=0
+export CLOUDDESKTOP=0
 
 if [[ "${CLOUDDESKTOP}" == 1 ]] then
     echo "Running ZSH for CloudDesktop"
