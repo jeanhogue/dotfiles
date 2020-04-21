@@ -11,7 +11,7 @@ zle_highlight=('paste:none')
 plugins=(zsh-autosuggestions zsh-syntax-highlighting) # removed git from the list
 
 ZSH_THEME="robbyrussell"
-export ZSH=/Users/jhogue/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # Right prompt to show timestamp. See https://linux.die.net/man/1/zshmisc
