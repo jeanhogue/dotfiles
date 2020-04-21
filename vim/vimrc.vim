@@ -6,6 +6,6 @@ source ~/dotfiles/vim/keymappings.vim
 source ~/dotfiles/vim/autocmds.vim
 source ~/dotfiles/vim/snippets.vim
 
-if $CLOUDDESKTOP == 0
+if has("gui_running")
     echom 'Config loaded'
 endif
