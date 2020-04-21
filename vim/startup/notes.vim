@@ -1,6 +1,6 @@
 execute "edit ~/Documents/VimNotes/Home.txt"
 execute "cd ~/Documents/VimNotes/"
-execute "NERDTree"
+execute "NERDTreeFind"
 execute "wincmd w"
 
 set titlestring=Notes\ -\ %t

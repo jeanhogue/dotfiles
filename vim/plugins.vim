@@ -6,6 +6,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'dracula/vim', { 'name': 'dracula' }
+Plugin 'morhetz/gruvbox', { 'name': 'gruvbox' }
 
 Plugin 'godlygeek/tabular'   " must come before vim-markdown
 Plugin 'plasticboy/vim-markdown'
@@ -18,6 +19,7 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
 colorscheme dracula
+"colorscheme gruvbox
 
 " set some variables to prevent NERDTree from assigning key mappings
 let g:NERDTreeMapOpenInTab = ''
@@ -36,6 +38,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " zA: open a fold your cursor is on recursively
 " zc: close a fold your cursor is on
 " zC: close a fold your cursor is on recursively
+
+highlight htmlH2 guifg=LightBlue
+highlight htmlH3 guifg=LightGreen
 
 " EasyMotion ---
 
@@ -59,5 +64,7 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
 " CtrlP ---
+
+let g:ctrlp_working_path_mode = 'cra'
 
 map <Leader>p :CtrlPMixed<cr>
