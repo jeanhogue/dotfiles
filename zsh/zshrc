@@ -1,7 +1,6 @@
 TERM=xterm-256color
 
-# If you come from bash you might have to change your $PATH.
-export PATH=~/Documents/VimNotes/bin/:~/.toolbox/bin/:/apollo/env/SDETools/bin:/usr/local/bin:$PATH
+export PATH=~/Documents/VimNotes/bin/:~/.toolbox/bin/:/apollo/env/SDETools/bin:/apollo/env/envImprovement/bin:/usr/local/bin:$PATH
 
 # When pasting text, no need to highlight
 zle_highlight=('paste:none')

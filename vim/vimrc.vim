@@ -6,4 +6,6 @@ source ~/dotfiles/vim/keymappings.vim
 source ~/dotfiles/vim/autocmds.vim
 source ~/dotfiles/vim/snippets.vim
 
-echom 'Config loaded'
+if version > 730
+    echom 'Config loaded'
+endif

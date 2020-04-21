@@ -21,7 +21,9 @@ set wildmenu
 ":set autochdir
 
 " to show relative numbers on the left side
-set relativenumber
+if version > 730
+    set relativenumber
+endif
 " this will show absolute line number on current line only (when combined with relativenumber)
 set number
 
