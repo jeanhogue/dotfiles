@@ -12,14 +12,14 @@ noremap <leader>a :b#<cr>
 " Replace all is aliased to S.
 nnoremap R :%s///g<Left><Left><Left>
 " Search recursively
-function! Search()
-  let term = input('Search for: ')
-  execute "vimgrep /" . term . "/j *" 
-  execute "copen"
-endfunction
-nnoremap <C-S-f> :call Search()<cr>
-" could also be done with something like:
-" command! -nargs=1 Ngrep vimgrep "<args>" *
+set wildignore+=*.xlsx,*.png,*.pptx
+command! -nargs=1 Ngrep vimgrep "<args>" ~/Documents/VimNotes/**
+nnoremap <leader>gn :Ngrep 
+command! -nargs=1 Cgrep vimgrep "<args>" ~/dotfiles/**
+nnoremap <leader>gc :Cgrep 
+nnoremap <leader>gg :copen<CR> 
+nnoremap <silent> <leader>[ :cprev<CR>  
+nnoremap <silent> <leader>] :cnext<CR>  
 
 " To save a file while in insert mode
 inoremap <C-s> <ESC>:w<CR>
