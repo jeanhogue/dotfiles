@@ -1,6 +1,15 @@
 TERM=xterm-256color
 
-export PATH=~/Documents/VimNotes/bin/:~/.toolbox/bin/:/apollo/env/SDETools/bin:/apollo/env/envImprovement/bin:/usr/local/bin:$PATH
+CLOUDDESKTOP=0
+
+if [[ "${CLOUDDESKTOP}" == 1 ]] then
+    echo "Running ZSH for CloudDesktop"
+    source /apollo/env/envImprovement/var/zshrc
+    DISABLE_AUTO_UPDATE="true"
+    export PATH=/apollo/env/envImprovement/bin:$PATH
+fi
+
+export PATH=~/Documents/VimNotes/bin/:~/.toolbox/bin/:/apollo/env/SDETools/bin:/usr/local/bin:$PATH
 
 # When pasting text, no need to highlight
 zle_highlight=('paste:none')
@@ -17,7 +26,9 @@ source $ZSH/oh-my-zsh.sh
 RPROMPT="%{$fg_bold[blue]%}[%D{%Y/%m/%f} %*]%{$reset_color%}"
 
 # Stars (*) are colored dark blue by default which is hard to see
-ZSH_HIGHLIGHT_STYLES[globbing]=fg=blue,bold
+if [[ "${CLOUDDESKTOP}" == 0 ]] then
+    ZSH_HIGHLIGHT_STYLES[globbing]=fg=blue,bold
+fi
 
 bindkey '^h' autosuggest-accept
 # yellow autosuggest text
@@ -70,6 +81,6 @@ alias gr5='git rebase -i HEAD~5'
 alias gr6='git rebase -i HEAD~6'
 alias gd='git diff'
 
-alias sshjs='ssh dev-dsk-jhogue-2b-264f79e6.us-west-2.amazon.com'
+alias c='ssh dev-dsk-jhogue-2b-264f79e6.us-west-2.amazon.com'
 
 alias odin="ssh -L 2009:localhost:2009 jhogue.aka.corp.amazon.com -f -N"
