@@ -1,16 +1,5 @@
 TERM=xterm-256color
 
-export CLOUDDESKTOP=0
-
-if [[ "${CLOUDDESKTOP}" == 1 ]] then
-    echo "Running ZSH for CloudDesktop"
-    source /apollo/env/envImprovement/var/zshrc
-    DISABLE_AUTO_UPDATE="true"
-    export PATH=/apollo/env/envImprovement/bin:$PATH
-fi
-
-export PATH=~/Documents/VimNotes/bin/:~/.toolbox/bin/:/apollo/env/SDETools/bin:/usr/local/bin:$PATH
-
 # When pasting text, no need to highlight
 zle_highlight=('paste:none')
 
@@ -18,17 +7,55 @@ zle_highlight=('paste:none')
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(zsh-autosuggestions zsh-syntax-highlighting) # removed git from the list
 
-ZSH_THEME="robbyrussell"
+if [[ "${CLOUDDESKTOP}" == 1 ]] then
+    # Few things specific for CloudDesktop ZSH coming from envImprovement,
+    # specifically /apollo/env/envImprovement/dotfiles/zshrc
+    echo "Running ZSH for CloudDesktop"
+    ENV_IMPROVEMENT_ROOT=/apollo/env/envImprovement
+    module_path=($ENV_IMPROVEMENT_ROOT/var/lib/zsh/$ZSH_VERSION/)
+    fpath=($ENV_IMPROVEMENT_ROOT/var/zsh/functions/$ZSH_VERSION        \
+           $ENV_IMPROVEMENT_ROOT/var/share/zsh/$ZSH_VERSION/functions)
+    
+    export PATH=
+    path=( ~/bin
+           ~/usr/bin
+           /usr/kerberos/bin
+           /apollo/env/SDETools/bin
+           /apollo/env/RemoteCommand/bin
+           $ENV_IMPROVEMENT_ROOT/bin
+           /usr/local/bin
+           /usr/bin
+           /bin
+           /usr/sbin
+           /sbin
+           /usr/local/sbin
+           /apollo/bin
+           /apollo/sbin
+           /apollo/env/ApolloCommandLine/bin)
+
+    typeset -ga precmd_functions
+    typeset -ga preexec_functions
+
+    DISABLE_AUTO_UPDATE="true"
+fi
+
+if [[ "${CLOUDDESKTOP}" == 1 ]] then
+    ZSH_THEME="takashiyoshida"
+else
+    ZSH_THEME="robbyrussell"
+fi
+echo "Using ${ZSH_THEME}"
 export ZSH=~/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# Right prompt to show timestamp. See https://linux.die.net/man/1/zshmisc
-RPROMPT="%{$fg_bold[blue]%}[%D{%Y/%m/%f} %*]%{$reset_color%}"
-
 # Stars (*) are colored dark blue by default which is hard to see
-if [[ "${CLOUDDESKTOP}" == 0 ]] then
+if [[ "${CLOUDDESKTOP}" != 1 ]] then
     ZSH_HIGHLIGHT_STYLES[globbing]=fg=blue,bold
 fi
+export PATH=~/Documents/VimNotes/bin/:~/.toolbox/bin/:/apollo/env/SDETools/bin:/usr/local/bin:$PATH
+
+# Right prompt to show timestamp. See https://linux.die.net/man/1/zshmisc
+RPROMPT="%{$fg_bold[blue]%}[%D{%Y/%m/%f} %*]%{$reset_color%}"
 
 bindkey '^h' autosuggest-accept
 # yellow autosuggest text

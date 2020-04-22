@@ -17,6 +17,7 @@ Next:
 
 ```
 > cat ~/.zshrc
+export CLOUDDESKTOP=0
 source ~/dotfiles/zsh/zshrc
 > cat ~/.vimrc
 source ~/dotfiles/vim/vimrc

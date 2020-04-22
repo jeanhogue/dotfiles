@@ -5,6 +5,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'preservim/nerdtree'
 Plugin 'dracula/vim', { 'name': 'dracula' }
 Plugin 'morhetz/gruvbox', { 'name': 'gruvbox' }
 
