@@ -4,4 +4,6 @@ execute "NERDTreeFind"
 execute "wincmd w"
 
 set titlestring=Configurations\ -\ %t
-set lines=999 columns=999
+if $CLOUDDESKTOP != 1
+    set lines=999 columns=999
+endif
