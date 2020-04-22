@@ -19,8 +19,11 @@ Plugin 'kien/ctrlp.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
-colorscheme dracula
-"colorscheme gruvbox
+if $CLOUDDESKTOP != 1
+    colorscheme dracula
+else
+    colorscheme gruvbox
+endif
 
 " set some variables to prevent NERDTree from assigning key mappings
 let g:NERDTreeMapOpenInTab = ''
