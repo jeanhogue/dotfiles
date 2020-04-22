@@ -109,5 +109,6 @@ alias gr6='git rebase -i HEAD~6'
 alias gd='git diff'
 
 alias c='ssh dev-dsk-jhogue-2b-264f79e6.us-west-2.amazon.com'
+alias tc='tmux attach-session -t Cloud'
 
 alias odin="ssh -L 2009:localhost:2009 jhogue.aka.corp.amazon.com -f -N"

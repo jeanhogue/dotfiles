@@ -22,6 +22,7 @@ syntax on
 if $CLOUDDESKTOP != 1
     colorscheme dracula
 else
+    colorscheme dracula " not sure why but only gruvbox will have weird colors; putting both 'fixes' it
     colorscheme gruvbox
 endif
 
