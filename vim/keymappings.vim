@@ -22,9 +22,9 @@ nnoremap <silent> <leader>[ :cprev<CR>
 nnoremap <silent> <leader>] :cnext<CR>  
 
 " To save a file while in insert mode
-inoremap <C-s> <ESC>:w<CR>
-vnoremap <C-s> <ESC>:w<CR>
-nnoremap <C-s> :w<CR>
+inoremap W <ESC>:w<CR>
+vnoremap W <ESC>:w<CR>
+nnoremap W :w<CR>
 
 " to undo while in insert mode
 inoremap <C-u> <ESC>ui

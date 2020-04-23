@@ -6,3 +6,7 @@ augroup filetype_markdown
     autocmd FileType markdown set indentexpr=''
 augroup END
 
+augroup misc
+    autocmd!
+    autocmd InsertEnter * norm zz
+augroup END

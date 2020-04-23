@@ -57,6 +57,7 @@ export PATH=~/Documents/VimNotes/bin/:~/.toolbox/bin/:/apollo/env/SDETools/bin:/
 # Right prompt to show timestamp. See https://linux.die.net/man/1/zshmisc
 RPROMPT="%{$fg_bold[blue]%}[%D{%Y/%m/%f} %*]%{$reset_color%}"
 
+# to see the key sequence, in terminal do Ctrl+V + key
 bindkey '^h' autosuggest-accept
 # yellow autosuggest text
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=226'

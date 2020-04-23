@@ -30,6 +30,7 @@ endif
 let g:NERDTreeMapOpenInTab = ''
 let g:NERDTreeMinimalUI = 1
 
+map <D-1> :NERDTreeToggle<CR>
 map <leader>nt :NERDTreeToggle<CR>
 map <leader>nf :NERDTreeFind<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
