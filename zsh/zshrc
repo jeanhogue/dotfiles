@@ -2,6 +2,8 @@ TERM=xterm-256color
 
 # When pasting text, no need to highlight
 zle_highlight=('paste:none')
+# Print an empty line between commands
+precmd() { print "" }
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -48,6 +50,16 @@ echo "Using ${ZSH_THEME}"
 export ZSH=~/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
+# override prompt
+local ret_status="%(?:%{$fg_bold[green]%}#:%{$fg_bold[red]%}#)"
+if [[ "${CLOUDDESKTOP}" == 1 ]] then
+    PROMPT_BRACKET_BEGIN='%{$fg_bold[white]%}['
+    PROMPT_BRACKET_END='%{$fg_bold[white]%}]'
+    export PROMPT="${ret_status} ${PROMPT_BRACKET_BEGIN}%{$fg_bold[magenta]%}%m${PROMPT_BRACKET_END} %{$fg_bold[yellow]%}%c%{$reset_color%}: "
+else
+    export PROMPT="${ret_status} %{$fg[cyan]%}%c%{$reset_color%}: "
+fi
+
 # Stars (*) are colored dark blue by default which is hard to see
 if [[ "${CLOUDDESKTOP}" != 1 ]] then
     ZSH_HIGHLIGHT_STYLES[globbing]=fg=blue,bold
@@ -80,13 +92,18 @@ HIST_STAMPS="yyyy-mm-dd hh:MM:SS"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPS="--extended"
-export FZF_DEFAULT_COMMAND="fd --type f"
+export FZF_DEFAULT_COMMAND="fd --type f"  # fd is an alternative command, similar to find. If this var wasn't specified,
+                                          # this is the command that would get executed:
+                                          # https://github.com/junegunn/fzf/blob/16b5902aa278639fd99be89abe8ac50eb49b34aa/shell/key-bindings.zsh#L7-L10
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+bindkey '^f' fzf-file-widget
+bindkey '^y' fzf-cd-widget
 
 # Quick vim startup
 alias v=mvim
 
-alias bb=brazil-build
+alias b=brazil-build
+alias bs=brazil-build
 alias bq='brazil-build quick_build'
 alias bbit=brazil-build test-integration-assert
 alias bba='brazil-recursive-cmd --allPackages brazil-build'
@@ -101,7 +118,9 @@ alias gs='git status'
 alias gb='git branch'
 alias ga='git add .'
 alias gc='git commit -m w '
-alias gco='git checkout '
+alias gco='git status -s | fzf -m | cut -d" " -f3 | xargs git checkout'
+alias gaf='git status -s | fzf -m | cut -d" " -f3 | xargs git add'
+alias gsh='git show $(git log --pretty=oneline --abbrev-commit | fzf | cut -d=" " -f1)'
 alias gr='git rebase -i HEAD~2'
 alias gr3='git rebase -i HEAD~3'
 alias gr4='git rebase -i HEAD~4'
@@ -113,3 +132,5 @@ alias c='ssh dev-dsk-jhogue-2b-264f79e6.us-west-2.amazon.com'
 alias tc='tmux attach-session -t Cloud'
 
 alias odin="ssh -L 2009:localhost:2009 jhogue.aka.corp.amazon.com -f -N"
+
+echo "Config .zshrc reloaded"
