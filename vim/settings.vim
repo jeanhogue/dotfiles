@@ -11,7 +11,7 @@ set smartcase     " ... unless they contain at least one capital letter
 set noswapfile
 
 " ??
-"set nobackup
+set nobackup
 "set undodir=~/.config/vim/undodir
 
 " prettier menu when opening a file
@@ -21,14 +21,9 @@ set wildmenu
 ":set autochdir
 
 " to show relative numbers on the left side
-if version > 730
-    set relativenumber
-endif
+set relativenumber
 " this will show absolute line number on current line only (when combined with relativenumber)
 set number
-
-" so that cursor is always centered in the middle of the screen
-"set scrolloff=999
 
 " remove both scrollbars
 set guioptions=

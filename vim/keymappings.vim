@@ -9,6 +9,9 @@ map <leader>w :bp<bar>sp<bar>bn<bar>bd<CR>
 
 noremap <leader>a :b#<cr>
 
+" Search with Ripgrep (Rg) and fzf
+nnoremap S :Rg<cr>
+
 " Replace all is aliased to S.
 nnoremap R :%s///g<Left><Left><Left>
 " Search recursively

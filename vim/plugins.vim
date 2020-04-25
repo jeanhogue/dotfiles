@@ -16,6 +16,9 @@ Plugin 'easymotion/vim-easymotion'
 
 Plugin 'kien/ctrlp.vim'
 
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
@@ -73,4 +76,6 @@ map <Leader>k <Plug>(easymotion-k)
 
 let g:ctrlp_working_path_mode = 'cra'
 
-map <Leader>p :CtrlPMixed<cr>
+" map <Leader>p :CtrlPMixed<cr>
+map <Leader>p :Files<cr>
+
