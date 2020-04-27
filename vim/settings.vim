@@ -14,7 +14,8 @@ set noswapfile
 set nobackup
 "set undodir=~/.config/vim/undodir
 
-" prettier menu when opening a file
+" prettier menu when doing auto-completion
+set wildmode=longest,list,full
 set wildmenu
 
 " to change current directory to current file
@@ -39,20 +40,14 @@ set linebreak
 " search down in subfolders when opening a file
 set path+=**
 
-" display all matching files on tab completion
-set wildmenu 
-
-" one tab is 4 spaces
-set tabstop=4 softtabstop=4
-
 " to convert tab to spaces
 set expandtab
 
 " can switch buffers by hidding
 set hidden
 
-" size of a tab
-set shiftwidth=4
+" one tab is 4 spaces
+set tabstop=4 softtabstop=4 shiftwidth=4
 
 " don't auto-wrap
 set textwidth=0 
@@ -60,6 +55,9 @@ set wrapmargin=0
 
 " this is to share Vim and Mac clipboard
 set clipboard=unnamed
+
+" by default, don't fold a file when opening
+set nofoldenable
 
 " splits open at the bottom and right
 set splitbelow splitright

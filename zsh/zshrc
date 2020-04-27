@@ -41,23 +41,16 @@ if [[ "${CLOUDDESKTOP}" == 1 ]] then
     DISABLE_AUTO_UPDATE="true"
 fi
 
-if [[ "${CLOUDDESKTOP}" == 1 ]] then
-    ZSH_THEME="takashiyoshida"
-else
-    ZSH_THEME="robbyrussell"
-fi
-echo "Using ${ZSH_THEME}"
+ZSH_THEME="robbyrussell"
 export ZSH=~/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # override prompt
 local ret_status="%(?:%{$fg_bold[green]%}#:%{$fg_bold[red]%}#)"
 if [[ "${CLOUDDESKTOP}" == 1 ]] then
-    PROMPT_BRACKET_BEGIN='%{$fg_bold[white]%}['
-    PROMPT_BRACKET_END='%{$fg_bold[white]%}]'
-    export PROMPT="${ret_status} ${PROMPT_BRACKET_BEGIN}%{$fg_bold[magenta]%}%m${PROMPT_BRACKET_END} %{$fg_bold[yellow]%}%c%{$reset_color%}: "
+    export PROMPT="${ret_status} %{$fg_bold[white]%}[Cloud] %{$fg[cyan]%}%c %{$fg_bold[blue]%}> %{$reset_color%}"
 else
-    export PROMPT="${ret_status} %{$fg[cyan]%}%c%{$reset_color%}: "
+    export PROMPT="${ret_status} %{$fg_bold[white]%}[Mac] %{$fg[cyan]%}%c %{$fg_bold[blue]%}> %{$reset_color%}"
 fi
 
 # Stars (*) are colored dark blue by default which is hard to see

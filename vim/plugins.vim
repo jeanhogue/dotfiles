@@ -50,6 +50,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 highlight htmlH2 guifg=LightBlue
 highlight htmlH3 guifg=LightGreen
+let g:vim_markdown_folding_level = 3
+let g:vim_markdown_toc_autofit = 1
 
 " EasyMotion ---
 
@@ -78,4 +80,6 @@ let g:ctrlp_working_path_mode = 'cra'
 
 " map <Leader>p :CtrlPMixed<cr>
 map <Leader>p :Files<cr>
+map <Leader>f :BLines<cr>
+map <Leader>b :Buffers<cr>
 

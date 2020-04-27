@@ -25,7 +25,7 @@ nnoremap <silent> <leader>[ :cprev<CR>
 nnoremap <silent> <leader>] :cnext<CR>  
 
 " To save a file while in insert mode
-inoremap W <ESC>:w<CR>
+" inoremap W <ESC>:w<CR>
 vnoremap W <ESC>:w<CR>
 nnoremap W :w<CR>
 
@@ -69,9 +69,11 @@ inoremap <C-Down> <Esc>:m-2<CR>
 inoremap <C-Up> <Esc>:m+<CR>
 
 " startup
-nnoremap <F2> :source ~/dotfiles/vim/startup/recommerce.vim<cr>
+nnoremap <F2> :source ~/dotfiles/vim/startup/zerowaste.vim<cr>
 nnoremap <F3> :source ~/dotfiles/vim/startup/notes.vim<cr>
 nnoremap <F4> :source ~/dotfiles/vim/startup/configs.vim<cr>
+nnoremap <F5> :source ~/dotfiles/vim/startup/recommerce.vim<cr>
+nnoremap <leader>t :edit ~/Documents/VimNotes/TODO.md<cr>
 
 map q <Nop>
 noremap <leader>q q
