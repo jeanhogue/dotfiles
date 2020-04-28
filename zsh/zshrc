@@ -1,15 +1,12 @@
 TERM=xterm-256color
 
-# When pasting text, no need to highlight
-zle_highlight=('paste:none')
-# Print an empty line between commands
-precmd() { print "" }
+if [[ -z $BRAZIL_PLATFORM_OVERRIDE ]] then
+    export CLOUDDESKTOP=0
+else
+    export CLOUDDESKTOP=1
+fi
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(zsh-autosuggestions zsh-syntax-highlighting) # removed git from the list
-
-if [[ "${CLOUDDESKTOP}" == 1 ]] then
+if [[ ${CLOUDDESKTOP} == 1 ]] then
     # Few things specific for CloudDesktop ZSH coming from envImprovement,
     # specifically /apollo/env/envImprovement/dotfiles/zshrc
     echo "Running ZSH for CloudDesktop"
@@ -23,7 +20,6 @@ if [[ "${CLOUDDESKTOP}" == 1 ]] then
            ~/usr/bin
            /usr/kerberos/bin
            /apollo/env/SDETools/bin
-           /apollo/env/RemoteCommand/bin
            $ENV_IMPROVEMENT_ROOT/bin
            /usr/local/bin
            /usr/bin
@@ -41,26 +37,39 @@ if [[ "${CLOUDDESKTOP}" == 1 ]] then
     DISABLE_AUTO_UPDATE="true"
 fi
 
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+plugins=(zsh-autosuggestions zsh-syntax-highlighting) # removed git from the list
+
 ZSH_THEME="robbyrussell"
 export ZSH=~/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # override prompt
 local ret_status="%(?:%{$fg_bold[green]%}#:%{$fg_bold[red]%}#)"
-if [[ "${CLOUDDESKTOP}" == 1 ]] then
+if [[ ${CLOUDDESKTOP} == 1 ]] then
     export PROMPT="${ret_status} %{$fg_bold[white]%}[Cloud] %{$fg[cyan]%}%c %{$fg_bold[blue]%}> %{$reset_color%}"
 else
     export PROMPT="${ret_status} %{$fg_bold[white]%}[Mac] %{$fg[cyan]%}%c %{$fg_bold[blue]%}> %{$reset_color%}"
 fi
 
-# Stars (*) are colored dark blue by default which is hard to see
-if [[ "${CLOUDDESKTOP}" != 1 ]] then
-    ZSH_HIGHLIGHT_STYLES[globbing]=fg=blue,bold
-fi
-export PATH=~/Documents/VimNotes/bin/:~/.toolbox/bin/:/apollo/env/SDETools/bin:/usr/local/bin:$PATH
-
 # Right prompt to show timestamp. See https://linux.die.net/man/1/zshmisc
 RPROMPT="%{$fg_bold[blue]%}[%D{%Y/%m/%f} %*]%{$reset_color%}"
+
+# Only set PATH if not in tmux - otherwise it duplicates it since tmux runs inside zsh
+if [[ -z $TMUX ]]; then
+    export PATH=~/Documents/VimNotes/bin/:~/.toolbox/bin/:/apollo/env/SDETools/bin:/usr/local/bin:$PATH
+fi
+
+# Stars (*) are colored dark blue by default which is hard to see
+if [[ ${CLOUDDESKTOP} != 1 ]] then
+    ZSH_HIGHLIGHT_STYLES[globbing]=fg=blue,bold
+fi
+
+# When pasting text, no need to highlight
+zle_highlight=('paste:none')
+# Print an empty line between commands
+precmd() { print "" }
 
 # to see the key sequence, in terminal do Ctrl+V + key
 bindkey '^h' autosuggest-accept
@@ -94,11 +103,16 @@ bindkey '^y' fzf-cd-widget
 
 # Quick vim startup
 alias v=mvim
+# c = Cloud
+alias c='ssh dev-dsk-jhogue-2b-264f79e6.us-west-2.amazon.com'
+alias tc='tmux attach-session -t Cloud'
+
+alias odin="ssh -L 2009:localhost:2009 jhogue.aka.corp.amazon.com -f -N"
 
 alias b=brazil-build
 alias bs=brazil-build
 alias bq='brazil-build quick_build'
-alias bbit=brazil-build test-integration-assert
+alias bbit='brazil-build test-integration-assert'
 alias bba='brazil-recursive-cmd --allPackages brazil-build'
 alias bc='brazil-build clean'
 alias bca='brazil-recursive-cmd --allPackages --reverse brazil-build clean'
@@ -120,10 +134,5 @@ alias gr4='git rebase -i HEAD~4'
 alias gr5='git rebase -i HEAD~5'
 alias gr6='git rebase -i HEAD~6'
 alias gd='git diff'
-
-alias c='ssh dev-dsk-jhogue-2b-264f79e6.us-west-2.amazon.com'
-alias tc='tmux attach-session -t Cloud'
-
-alias odin="ssh -L 2009:localhost:2009 jhogue.aka.corp.amazon.com -f -N"
 
 echo "Config .zshrc reloaded"

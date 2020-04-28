@@ -1,5 +1,5 @@
 " Few settings specific for Intellij IdeaVim plugin
-source ~/dotfiles/vim/vimrc.vim
+source $DOTFILESROOT/vim/vimrc.vim
 let mapleader = " "
 set easymotion
 set ideajoin

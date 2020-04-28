@@ -17,12 +17,13 @@ Next:
 
 ```
 > cat ~/.zshrc
+export DOTFILESROOT=~/dotfiles
 export CLOUDDESKTOP=0
-source ~/dotfiles/zsh/zshrc
+source $DOTFILESROOT/zsh/zshrc
 > cat ~/.vimrc
-source ~/dotfiles/vim/vimrc
+source $DOTFILESROOT/vim/vimrc
 > cat ~/.tmux.conf
-source-file ~/dotfiles/tmux/tmux.conf
+source-file $DOTFILESROOT/tmux/tmux.conf
 ```
 
 It's possible to also just run `setup.sh`. 

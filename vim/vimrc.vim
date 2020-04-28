@@ -8,11 +8,11 @@
 
 let mapleader = " "
 
-source ~/dotfiles/vim/plugins.vim
-source ~/dotfiles/vim/settings.vim
-source ~/dotfiles/vim/keymappings.vim
-source ~/dotfiles/vim/autocmds.vim
-source ~/dotfiles/vim/snippets.vim
+source $DOTFILESROOT/vim/plugins.vim
+source $DOTFILESROOT/vim/settings.vim
+source $DOTFILESROOT/vim/keymappings.vim
+source $DOTFILESROOT/vim/autocmds.vim
+source $DOTFILESROOT/vim/snippets.vim
 
 if has("gui_running")
     echom 'Config loaded'
