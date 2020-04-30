@@ -5,7 +5,7 @@ set easymotion
 set ideajoin
 set clipboard+=ideaput
 
-nnoremap <C-a> 0
+nnoremap <C-a> _
 nnoremap <C-e> $
 
 nnoremap <leader>s <Plug>(easymotion-s)

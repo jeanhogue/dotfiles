@@ -19,6 +19,7 @@ if [[ ${CLOUDDESKTOP} == 1 ]] then
     path=( ~/bin
            ~/usr/bin
            /usr/kerberos/bin
+           ~/.toolbox/bin/
            /apollo/env/SDETools/bin
            $ENV_IMPROVEMENT_ROOT/bin
            /usr/local/bin
@@ -110,7 +111,7 @@ alias tc='tmux attach-session -t Cloud'
 alias odin="ssh -L 2009:localhost:2009 jhogue.aka.corp.amazon.com -f -N"
 
 alias b=brazil-build
-alias bs=brazil-build
+alias bs='brazil-build server'
 alias bq='brazil-build quick_build'
 alias bbit='brazil-build test-integration-assert'
 alias bba='brazil-recursive-cmd --allPackages brazil-build'

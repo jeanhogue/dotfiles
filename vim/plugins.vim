@@ -19,6 +19,8 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 
+Plugin 'tpope/vim-commentary'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
@@ -83,3 +85,5 @@ map <Leader>p :Files<cr>
 map <Leader>f :BLines<cr>
 map <Leader>b :Buffers<cr>
 
+" Commentary to comment out lines
+map <Leader>/ <Plug>Commentary

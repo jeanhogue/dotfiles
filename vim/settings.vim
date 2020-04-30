@@ -62,6 +62,9 @@ set nofoldenable
 " splits open at the bottom and right
 set splitbelow splitright
 
+" disable bell sound when pressing <esc>
+set noeb vb t_vb=
+
 " set the cursor colors
 highlight Cursor guifg=black guibg=lightgreen gui=bold
 highlight iCursor guifg=white guibg=orange
@@ -83,6 +86,8 @@ set guicursor+=i:blinkwait1000-blinkon800-blinkoff150
 let g:markdown_folding = 1
 
 " status bar ---
+
+set laststatus=2
 
 set statusline=
 set statusline+=%#DiffAdd#%{(mode()=='n')?'\ \ NORMAL\ ':''}
