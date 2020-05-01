@@ -9,7 +9,9 @@ fi
 if [[ ${CLOUDDESKTOP} == 1 ]] then
     # Few things specific for CloudDesktop ZSH coming from envImprovement,
     # specifically /apollo/env/envImprovement/dotfiles/zshrc
-    echo "Running ZSH for CloudDesktop"
+    if [[ -z $TMUX ]]; then
+        source $DOTFILESROOT/zsh/cloudart
+    fi
     ENV_IMPROVEMENT_ROOT=/apollo/env/envImprovement
     module_path=($ENV_IMPROVEMENT_ROOT/var/lib/zsh/$ZSH_VERSION/)
     fpath=($ENV_IMPROVEMENT_ROOT/var/zsh/functions/$ZSH_VERSION        \
@@ -43,13 +45,14 @@ fi
 plugins=(zsh-autosuggestions zsh-syntax-highlighting) # removed git from the list
 
 ZSH_THEME="robbyrussell"
+
 export ZSH=~/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
 # override prompt
 local ret_status="%(?:%{$fg_bold[green]%}#:%{$fg_bold[red]%}#)"
 if [[ ${CLOUDDESKTOP} == 1 ]] then
-    export PROMPT="${ret_status} %{$fg_bold[white]%}[Cloud] %{$fg[cyan]%}%c %{$fg_bold[blue]%}> %{$reset_color%}"
+    export PROMPT="${ret_status} %{$fg_bold[magenta]%}[Cloud] %{$fg[cyan]%}%c %{$fg_bold[blue]%}> %{$reset_color%}"
 else
     export PROMPT="${ret_status} %{$fg_bold[white]%}[Mac] %{$fg[cyan]%}%c %{$fg_bold[blue]%}> %{$reset_color%}"
 fi
@@ -95,9 +98,11 @@ HIST_STAMPS="yyyy-mm-dd hh:MM:SS"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPS="--extended"
-export FZF_DEFAULT_COMMAND="fd --type f"  # fd is an alternative command, similar to find. If this var wasn't specified,
-                                          # this is the command that would get executed:
-                                          # https://github.com/junegunn/fzf/blob/16b5902aa278639fd99be89abe8ac50eb49b34aa/shell/key-bindings.zsh#L7-L10
+if [[ ${CLOUDDESKTOP} != 1 ]] then
+    export FZF_DEFAULT_COMMAND="fd --type f"  # fd is an alternative command, similar to find. If this var wasn't specified,
+                                              # this is the command that would get executed:
+                                              # https://github.com/junegunn/fzf/blob/16b5902aa278639fd99be89abe8ac50eb49b34aa/shell/key-bindings.zsh#L7-L10
+fi
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 bindkey '^f' fzf-file-widget
 bindkey '^y' fzf-cd-widget
@@ -107,6 +112,9 @@ alias v=mvim
 # c = Cloud
 alias c='ssh dev-dsk-jhogue-2b-264f79e6.us-west-2.amazon.com'
 alias tc='tmux attach-session -t Cloud'
+
+alias alac="alacritty --config-file ~/dotfiles/alacritty/cloud.yml -e $SHELL -c 'ssh dev-dsk-jhogue-2b-264f79e6.us-west-2.amazon.com; $SHELL' &; disown"
+alias alam='alacritty --config-file ~/dotfiles/alacritty/mac.yml &; disown'
 
 alias odin="ssh -L 2009:localhost:2009 jhogue.aka.corp.amazon.com -f -N"
 
@@ -135,5 +143,3 @@ alias gr4='git rebase -i HEAD~4'
 alias gr5='git rebase -i HEAD~5'
 alias gr6='git rebase -i HEAD~6'
 alias gd='git diff'
-
-echo "Config .zshrc reloaded"
