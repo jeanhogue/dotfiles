@@ -1,5 +1,5 @@
 noremap <leader>ev :e $MYVIMRC<cr>
-noremap <leader>sv :source $MYVIMRC<cr> | redraw
+noremap <leader>ss :source $MYVIMRC<cr>
 
 " make it easier to enter command mode
 nnoremap - :
@@ -8,6 +8,9 @@ nnoremap - :
 map <leader>w :bp<bar>sp<bar>bn<bar>bd<CR>
 
 noremap <leader>a :b#<cr>
+
+" With autocomplete (C-n), make enter key NOT add a new line
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
 " Search with Ripgrep (Rg) and fzf
 nnoremap S :Rg<cr>

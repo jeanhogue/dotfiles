@@ -19,12 +19,18 @@ set wildmode=longest,list,full
 set wildmenu
 
 " to change current directory to current file
-":set autochdir
+" set autochdir
+
+" autocomplete menu
+set completeopt=menu,preview,noinsert
 
 " to show relative numbers on the left side
 set relativenumber
 " this will show absolute line number on current line only (when combined with relativenumber)
 set number
+
+" context lines around cursor
+set scrolloff=10
 
 " remove both scrollbars
 set guioptions=
@@ -64,6 +70,12 @@ set splitbelow splitright
 
 " disable bell sound when pressing <esc>
 set noeb vb t_vb=
+
+" this will leave vim text in the terminal after quitting
+"set t_ti= t_te=
+" this (should) make terminal restore previous input (default behavior?)
+"set t_ti=[?1049h
+"set t_te=[?1049l
 
 " set the cursor colors
 highlight Cursor guifg=black guibg=lightgreen gui=bold

@@ -9,4 +9,6 @@ augroup END
 augroup misc
     autocmd!
     autocmd InsertEnter * norm zz
+    " formatting options, don't start comment or list element on <CR> in insert mode
+    autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 augroup END

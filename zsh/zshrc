@@ -52,17 +52,20 @@ source $ZSH/oh-my-zsh.sh
 # override prompt
 local ret_status="%(?:%{$fg_bold[green]%}#:%{$fg_bold[red]%}#)"
 if [[ ${CLOUDDESKTOP} == 1 ]] then
-    export PROMPT="${ret_status} %{$fg_bold[magenta]%}[Cloud] %{$fg[cyan]%}%c %{$fg_bold[blue]%}> %{$reset_color%}"
+    export PROMPT="${ret_status} %{$fg_bold[magenta]%}[空空空] %{$fg[cyan]%}%c %{$fg_bold[blue]%}> %{$reset_color%}"
 else
     export PROMPT="${ret_status} %{$fg_bold[white]%}[Mac] %{$fg[cyan]%}%c %{$fg_bold[blue]%}> %{$reset_color%}"
 fi
 
 # Right prompt to show timestamp. See https://linux.die.net/man/1/zshmisc
-RPROMPT="%{$fg_bold[blue]%}[%D{%Y/%m/%f} %*]%{$reset_color%}"
+RPROMPT="%{$fg_bold[blue]%}[%D{%Y/%m/%d} %*]%{$reset_color%}"
 
-# Only set PATH if not in tmux - otherwise it duplicates it since tmux runs inside zsh
+# Only set PATH if not in tmux - otherwise it duplicates entries
 if [[ -z $TMUX ]]; then
-    export PATH=~/Documents/VimNotes/bin/:~/.toolbox/bin/:/apollo/env/SDETools/bin:/usr/local/bin:$PATH
+    # Default MacOS path looks like this:
+    # /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
+    # Add a few things to it
+    export PATH=$HOME/Documents/VimNotes/bin:$HOME/.toolbox/bin/:/apollo/env/SDETools/bin:/usr/local/opt/ruby/bin:/usr/local/bin:$PATH
 fi
 
 # Stars (*) are colored dark blue by default which is hard to see
@@ -123,7 +126,7 @@ alias bs='brazil-build server'
 alias bq='brazil-build quick_build'
 alias bbit='brazil-build test-integration-assert'
 alias bba='brazil-recursive-cmd --allPackages brazil-build'
-alias bc='brazil-build clean'
+alias bcl='brazil-build clean'
 alias bca='brazil-recursive-cmd --allPackages --reverse brazil-build clean'
 alias bvs='brazil vs'
 alias bws='brazil ws'
@@ -143,3 +146,10 @@ alias gr4='git rebase -i HEAD~4'
 alias gr5='git rebase -i HEAD~5'
 alias gr6='git rebase -i HEAD~6'
 alias gd='git diff'
+
+# Simple calculator which works by having node evaluate an expression
+# Can be use like:
+#   e "1+2"
+e() {
+    node -p "$1"
+}
