@@ -13,7 +13,3 @@ source $DOTFILESROOT/vim/settings.vim
 source $DOTFILESROOT/vim/keymappings.vim
 source $DOTFILESROOT/vim/autocmds.vim
 source $DOTFILESROOT/vim/snippets.vim
-
-if has("gui_running")
-    echom 'Config loaded'
-endif

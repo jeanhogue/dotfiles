@@ -1,5 +1,5 @@
 noremap <leader>ev :e $MYVIMRC<cr>
-noremap <leader>ss :source $MYVIMRC<cr>
+noremap <leader>ss :source $MYVIMRC<cr> :echom 'Vim config reloaded...'<cr>
 
 " make it easier to enter command mode
 nnoremap - :
@@ -17,15 +17,6 @@ nnoremap S :Rg<cr>
 
 " Replace all is aliased to S.
 nnoremap R :%s///g<Left><Left><Left>
-" Search recursively
-set wildignore+=*.xlsx,*.png,*.pptx
-command! -nargs=1 Ngrep vimgrep "<args>" ~/Documents/VimNotes/**
-nnoremap <leader>gn :Ngrep 
-command! -nargs=1 Cgrep vimgrep "<args>" ~/dotfiles/**
-nnoremap <leader>gc :Cgrep 
-nnoremap <leader>gg :copen<CR> 
-nnoremap <silent> <leader>[ :cprev<CR>  
-nnoremap <silent> <leader>] :cnext<CR>  
 
 " To save a file while in insert mode
 " inoremap W <ESC>:w<CR>
@@ -72,10 +63,10 @@ inoremap <C-Down> <Esc>:m-2<CR>
 inoremap <C-Up> <Esc>:m+<CR>
 
 " startup
-nnoremap <F2> :source ~/dotfiles/vim/startup/zerowaste.vim<cr>
-nnoremap <F3> :source ~/dotfiles/vim/startup/notes.vim<cr>
-nnoremap <F4> :source ~/dotfiles/vim/startup/configs.vim<cr>
-nnoremap <F5> :source ~/dotfiles/vim/startup/recommerce.vim<cr>
+nnoremap <F2> :source $DOTFILESROOT/vim/startup/zerowaste.vim<cr>
+nnoremap <F3> :source $DOTFILESROOT/vim/startup/notes.vim<cr>
+nnoremap <F4> :source $DOTFILESROOT/vim/startup/configs.vim<cr>
+nnoremap <F5> :source $DOTFILESROOT/vim/startup/recommerce.vim<cr>
 nnoremap <leader>t :edit ~/Documents/VimNotes/TODO.md<cr>
 
 map q <Nop>
