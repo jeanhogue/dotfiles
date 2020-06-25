@@ -24,6 +24,7 @@ if [[ ${CLOUDDESKTOP} == 1 ]] then
            /usr/kerberos/bin
            ~/.toolbox/bin/
            /apollo/env/SDETools/bin
+           /apollo/env/AmazonAwsCli/bin
            $ENV_IMPROVEMENT_ROOT/bin
            /usr/local/bin
            /usr/bin
