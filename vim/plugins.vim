@@ -20,6 +20,7 @@ Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 
 Plugin 'tpope/vim-commentary'
+Plugin 'chrisbra/colorizer'
 
 call vundle#end()            " required
 filetype plugin indent on    " required

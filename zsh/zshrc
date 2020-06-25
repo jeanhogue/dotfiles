@@ -1,4 +1,5 @@
 TERM=xterm-256color
+LANG=en_US.UTF-8
 
 if [[ -z $BRAZIL_PLATFORM_OVERRIDE ]] then
     export CLOUDDESKTOP=0
@@ -42,7 +43,7 @@ fi
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(zsh-autosuggestions zsh-syntax-highlighting) # removed git from the list
+plugins=(zsh-autosuggestions zsh-syntax-highlighting autojump) # removed git from the list
 
 ZSH_THEME="robbyrussell"
 
@@ -102,7 +103,7 @@ HIST_STAMPS="yyyy-mm-dd hh:MM:SS"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPS="--extended"
 if [[ ${CLOUDDESKTOP} != 1 ]] then
-    export FZF_DEFAULT_COMMAND="fd --type f"  # fd is an alternative command, similar to find. If this var wasn't specified,
+    export FZF_DEFAULT_COMMAND="fd --type f --type l"  # fd is an alternative command, similar to find. If this var wasn't specified,
                                               # this is the command that would get executed:
                                               # https://github.com/junegunn/fzf/blob/16b5902aa278639fd99be89abe8ac50eb49b34aa/shell/key-bindings.zsh#L7-L10
 fi
@@ -116,10 +117,11 @@ alias v=mvim
 alias c='ssh dev-dsk-jhogue-2b-264f79e6.us-west-2.amazon.com'
 alias tc='tmux attach-session -t Cloud'
 
-alias alac="alacritty --config-file ~/dotfiles/alacritty/cloud.yml -e $SHELL -c 'ssh dev-dsk-jhogue-2b-264f79e6.us-west-2.amazon.com; $SHELL' &; disown"
-alias alam='alacritty --config-file ~/dotfiles/alacritty/mac.yml &; disown'
+# using Mac path to get app icon
+alias alac="/Applications/Alacritty.app/Contents/MacOS/alacritty --config-file ~/dotfiles/alacritty/cloud.yml -e $SHELL -c 'ssh dev-dsk-jhogue-2b-264f79e6.us-west-2.amazon.com; $SHELL' &; disown"
+alias alam='/Applications/Alacritty.app/Contents/MacOS/alacritty --config-file ~/dotfiles/alacritty/mac.yml &; disown'
 
-alias odin="ssh -L 2009:localhost:2009 jhogue.aka.corp.amazon.com -f -N"
+alias odin="ssh -L 2009:localhost:2009 dev-dsk-jhogue-2b-264f79e6.us-west-2.amazon.com -f -N"
 
 alias b=brazil-build
 alias bs='brazil-build server'
@@ -139,7 +141,7 @@ alias ga='git add .'
 alias gc='git commit -m w '
 alias gco='git status -s | fzf -m | cut -d" " -f3 | xargs git checkout'
 alias gaf='git status -s | fzf -m | cut -d" " -f3 | xargs git add'
-alias gsh='git show $(git log --pretty=oneline --abbrev-commit | fzf | cut -d=" " -f1)'
+alias gsh='git show $(git log --pretty=oneline --abbrev-commit | fzf | cut -d " " -f 1)'
 alias gr='git rebase -i HEAD~2'
 alias gr3='git rebase -i HEAD~3'
 alias gr4='git rebase -i HEAD~4'
@@ -153,3 +155,9 @@ alias gd='git diff'
 e() {
     node -p "$1"
 }
+
+# Python stuff
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+export PATH=/opt/miniconda3/bin/:$PATH

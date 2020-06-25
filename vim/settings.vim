@@ -39,7 +39,7 @@ set guioptions=
 set guifont=Menlo:h14
 
 " characters that wrap previous/next line
-set whichwrap=b,s,<,>,h,l
+set whichwrap=b,s,<,>,h,l,[,]
 " don't wrap mid-word
 set linebreak
 
@@ -78,8 +78,8 @@ set noeb vb t_vb=
 "set t_te=[?1049l
 
 " set the cursor colors
-highlight Cursor guifg=black guibg=lightgreen gui=bold
-highlight iCursor guifg=white guibg=orange
+highlight Cursor guifg=black guibg=orange gui=bold
+highlight iCursor guifg=white guibg=blue
 " selected text in visual mode
 highlight Visual guifg=white guibg=purple
 
