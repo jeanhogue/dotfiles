@@ -1,5 +1,6 @@
 TERM=xterm-256color
-LANG=en_US.UTF-8
+LC_CTYPE=C 
+LANG=C
 
 if [[ -z $BRAZIL_PLATFORM_OVERRIDE ]] then
     export CLOUDDESKTOP=0
@@ -81,7 +82,7 @@ zle_highlight=('paste:none')
 precmd() { print "" }
 
 # to see the key sequence, in terminal do Ctrl+V + key
-bindkey '^h' autosuggest-accept
+bindkey '^n' autosuggest-accept
 # yellow autosuggest text
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=226'
 
@@ -114,6 +115,7 @@ bindkey '^y' fzf-cd-widget
 
 # Quick vim startup
 alias v=mvim
+alias tmuxnew='tmux -u new-session -s Mac \; source $DOTFILESROOT/tmux/dev.conf'
 # c = Cloud
 alias c='ssh dev-dsk-jhogue-2b-264f79e6.us-west-2.amazon.com'
 alias tc='tmux attach-session -t Cloud'

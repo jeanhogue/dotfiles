@@ -4,5 +4,3 @@ execute "cd ~/Documents/"
 execute "normal! Gzazazz"
 
 set titlestring=ZeroWaste\ -\ %t
-set lines=999 columns=999
-

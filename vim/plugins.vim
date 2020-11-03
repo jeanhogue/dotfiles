@@ -6,7 +6,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'preservim/nerdtree'
-Plugin 'dracula/vim', { 'name': 'dracula' }
+" Plugin 'dracula/vim', { 'name': 'dracula' }
 Plugin 'morhetz/gruvbox', { 'name': 'gruvbox' }
 
 Plugin 'godlygeek/tabular'   " must come before vim-markdown
@@ -19,14 +19,17 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 
+" Commentary to comment out lines
+" comment out line with gcc, or gc while in visual mode, or with an operator like gcap (whole paragraph)
 Plugin 'tpope/vim-commentary'
-Plugin 'chrisbra/colorizer'
+" Plugin 'chrisbra/colorizer'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax on
 if $CLOUDDESKTOP != 1
-    colorscheme dracula
+    " colorscheme iceberg
+    colorscheme gruvbox
 else
     colorscheme dracula " not sure why but only gruvbox will have weird colors; putting both 'fixes' it
     colorscheme gruvbox
@@ -51,8 +54,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " zc: close a fold your cursor is on
 " zC: close a fold your cursor is on recursively
 
-highlight htmlH2 guifg=LightBlue
-highlight htmlH3 guifg=LightGreen
+highlight htmlH1 guifg=LightBlue
+highlight htmlH2 guifg=LightGreen
+highlight htmlH3 guifg=LightPink
 let g:vim_markdown_folding_level = 3
 let g:vim_markdown_toc_autofit = 1
 
@@ -85,6 +89,3 @@ let g:ctrlp_working_path_mode = 'cra'
 map <Leader>p :Files<cr>
 map <Leader>f :BLines<cr>
 map <Leader>b :Buffers<cr>
-
-" Commentary to comment out lines
-map <Leader>/ <Plug>Commentary

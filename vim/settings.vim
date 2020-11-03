@@ -10,6 +10,10 @@ set smartcase     " ... unless they contain at least one capital letter
 " set smartindent
 set noswapfile
 
+set mouse=a
+map <ScrollWheelUp> <C-Y>
+map <ScrollWheelDown> <C-E>
+
 " ??
 set nobackup
 "set undodir=~/.config/vim/undodir
@@ -25,7 +29,7 @@ set wildmenu
 set completeopt=menu,preview,noinsert
 
 " to show relative numbers on the left side
-set relativenumber
+"set relativenumber
 " this will show absolute line number on current line only (when combined with relativenumber)
 set number
 
@@ -36,7 +40,7 @@ set scrolloff=10
 set guioptions=
 
 " set the font. Menlo is what IntelliJ is using
-set guifont=Menlo:h14
+" set guifont=Menlo:h14
 
 " characters that wrap previous/next line
 set whichwrap=b,s,<,>,h,l,[,]
@@ -60,7 +64,8 @@ set textwidth=0
 set wrapmargin=0
 
 " this is to share Vim and Mac clipboard
-set clipboard=unnamed
+" set clipboard=unnamed
+" edit: turning this off - to paste Mac clipboard, use "*p
 
 " by default, don't fold a file when opening
 set nofoldenable
@@ -82,6 +87,7 @@ highlight Cursor guifg=black guibg=orange gui=bold
 highlight iCursor guifg=white guibg=blue
 " selected text in visual mode
 highlight Visual guifg=white guibg=purple
+highlight Search guibg=peru guifg=yellow
 
 set guicursor=n-v-c:block-Cursor
 set guicursor+=i:ver25-iCursor
@@ -122,5 +128,3 @@ set statusline+=\ %Y\           " file type
 set statusline+=%#CursorIM#     " colour
 set statusline+=\ %3l:%-2c\     " line + column
 set statusline+=%#Cursor#       " colour
-set statusline+=\ %3p%%\        " percentage
-
