@@ -2,7 +2,7 @@ TERM=xterm-256color
 LC_CTYPE=C
 LANG=C
 
-if [[ -z $BRAZIL_PLATFORM_OVERRIDE ]] then
+if [[ -z $HOSTNAME ]] then
     export CLOUDDESKTOP=0
 else
     export CLOUDDESKTOP=1
@@ -114,7 +114,11 @@ bindkey '^f' fzf-file-widget
 bindkey '^y' fzf-cd-widget
 
 # Quick vim startup
-alias v=nvim
+if [[ ${CLOUDDESKTOP} != 1 ]] then
+    alias v=nvim
+else
+    alias v=vim
+fi
 if [[ ${CLOUDDESKTOP} != 1 ]] then
     alias tmuxnew='tmux -u new-session -s Mac \; source $DOTFILESROOT/tmux/dev.conf'
 else
