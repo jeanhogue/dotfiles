@@ -25,8 +25,6 @@ Plugin 'tpope/vim-commentary'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'antoinemadec/coc-fzf'
 
-Plugin 'airblade/vim-gitgutter'
-
 " for typescript/react tsx
 Plugin 'leafgarland/typescript-vim'
 Plugin 'peitalin/vim-jsx-typescript'

@@ -1,6 +1,7 @@
 TERM=xterm-256color
 LC_CTYPE=C
 LANG=C
+LC_ALL="en_US.UTF-8"
 
 if [[ -z $HOSTNAME ]] then
     export CLOUDDESKTOP=0
