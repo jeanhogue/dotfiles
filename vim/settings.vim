@@ -76,6 +76,12 @@ set splitbelow splitright
 " disable bell sound when pressing <esc>
 set noeb vb t_vb=
 
+" this is so that moving cursor by word stops at the underscores, especially useful with variables such as some_variable_name
+" set iskeyword-=_
+
+" when changing buffer, cursor goes back to beginning of line by default. Change that
+set nostartofline
+
 " this will leave vim text in the terminal after quitting
 "set t_ti= t_te=
 " this (should) make terminal restore previous input (default behavior?)
@@ -95,8 +101,8 @@ set guicursor+=n-v-c:blinkon0
 set guicursor+=i:blinkwait1000-blinkon800-blinkoff150
 
 " cursor line is the highlighted horizontal line
-"highlight CursorLine guibg=#000050 guifg=fg
-"set cursorline
+highlight CursorLine guibg=#000090 guifg=fg ctermbg=238
+set cursorline
 
 " filetype specific ---
 
@@ -128,3 +134,9 @@ set statusline+=\ %Y\           " file type
 set statusline+=%#CursorIM#     " colour
 set statusline+=\ %3l:%-2c\     " line + column
 set statusline+=%#Cursor#       " colour
+
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
+set statusline+=%{GitStatus()}

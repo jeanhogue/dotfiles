@@ -14,8 +14,6 @@ Plugin 'plasticboy/vim-markdown'
 
 Plugin 'easymotion/vim-easymotion'
 
-Plugin 'kien/ctrlp.vim'
-
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 
@@ -23,6 +21,15 @@ Plugin 'junegunn/fzf.vim'
 " comment out line with gcc, or gc while in visual mode, or with an operator like gcap (whole paragraph)
 Plugin 'tpope/vim-commentary'
 " Plugin 'chrisbra/colorizer'
+
+Plugin 'neoclide/coc.nvim', {'branch': 'release'}
+Plugin 'antoinemadec/coc-fzf'
+
+Plugin 'airblade/vim-gitgutter'
+
+" for typescript/react tsx
+Plugin 'leafgarland/typescript-vim'
+Plugin 'peitalin/vim-jsx-typescript'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -39,7 +46,6 @@ endif
 let g:NERDTreeMapOpenInTab = ''
 let g:NERDTreeMinimalUI = 1
 
-map <D-1> :NERDTreeToggle<CR>
 map <leader>nt :NERDTreeToggle<CR>
 map <leader>nf :NERDTreeFind<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -54,38 +60,27 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " zc: close a fold your cursor is on
 " zC: close a fold your cursor is on recursively
 
-highlight htmlH1 guifg=LightBlue
-highlight htmlH2 guifg=LightGreen
-highlight htmlH3 guifg=LightPink
+" highlight htmlH1 guifg=LightBlue
+" highlight htmlH2 guifg=LightGreen
+" highlight htmlH3 guifg=LightPink
 let g:vim_markdown_folding_level = 3
 let g:vim_markdown_toc_autofit = 1
 
 " EasyMotion ---
 
-"let g:EasyMotion_leader_key = '\\' 
-"let g:EasyMotion_do_mapping = 0 " Disable default mappings
-" map <Leader> <Plug>(easymotion-prefix)
-" 
 " " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " " `s{char}{label}`
 nmap s <Plug>(easymotion-overwin-f)
-" " or
-" " `s{char}{char}{label}`
-" " Need one more keystroke, but on average, it may be more comfortable.
-" nmap s <Plug>(easymotion-overwin-f2)
-" 
+
 " " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
-" 
-" " JK motions: Line motions
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
 
-" CtrlP ---
-
-let g:ctrlp_working_path_mode = 'cra'
-
-" map <Leader>p :CtrlPMixed<cr>
+" Ctrl-X or Ctrl-V will open the new file in a split!
 map <Leader>p :Files<cr>
 map <Leader>f :BLines<cr>
 map <Leader>b :Buffers<cr>
+
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+let g:coc_fzf_preview = ''
+let g:coc_fzf_opts = []
+let g:coc_global_extensions = [ 'coc-tsserver' ]

@@ -1,7 +1,6 @@
-execute "edit ~/Documents/ReCommerce/notes.md"
-execute "cd ~/Documents/ReCommerce/"
-" To go end of file and expand markdown folds 2x
+execute "edit ~/Documents/JS Documents/Work/Work archives/ReCommerce/notes.md"
+execute "cd ~/Documents/JS Documents/Work/Work archives/ReCommerce/"
+" " To go end of file and expand markdown folds 2x
 execute "normal! Gzazazz"
 
-set titlestring=ReCommerce\ -\ %t
-set lines=999 columns=999
+" set titlestring=ReCommerce\ -\ %t

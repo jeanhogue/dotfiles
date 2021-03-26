@@ -4,6 +4,9 @@ noremap <leader>ss :source $MYVIMRC<cr> :echom 'Vim config reloaded...'<cr>
 " make it easier to enter command mode
 nnoremap - :
 
+" Search with F3
+noremap <F3> *
+
 " To close a buffer without closing the window
 map <leader>w :bp<bar>sp<bar>bn<bar>bd<CR>
 
@@ -34,8 +37,10 @@ inoremap <silent> <C-c> <Esc>`^
 nnoremap <Backspace> X
 
 nnoremap <C-a> _
+vnoremap <C-a> _
 inoremap <C-a> <esc>_i
 nnoremap <C-e> $
+vnoremap <C-e> $
 inoremap <C-e> <esc>A
 
 " Shift-j/k to move visual block up/down
@@ -43,14 +48,15 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " startup
-nnoremap <F2> :source $DOTFILESROOT/vim/startup/zerowaste.vim<cr>
-nnoremap <F3> :source $DOTFILESROOT/vim/startup/notes.vim<cr>
-nnoremap <F4> :source $DOTFILESROOT/vim/startup/configs.vim<cr>
-nnoremap <F5> :source $DOTFILESROOT/vim/startup/recommerce.vim<cr>
-nnoremap <leader>t :edit ~/Documents/VimNotes/TODO.md<cr>
-nnoremap <leader>r :edit ~/Documents/ZeroWaste/Daily Tracker.md<cr>
-nnoremap <leader>g :edit ~/Documents/ZeroWaste/ZW Glossary.md<cr>
-nnoremap <leader>l :edit ~/Documents/JS/Life Story/Life Story.md<cr>
+nnoremap <leader><F2> :source $DOTFILESROOT/vim/startup/zerowaste.vim<cr>
+nnoremap <leader><F3> :source $DOTFILESROOT/vim/startup/notes.vim<cr>
+nnoremap <leader><F4> :source $DOTFILESROOT/vim/startup/configs.vim<cr>
+nnoremap <leader><F5> :source $DOTFILESROOT/vim/startup/wdp.vim<cr>
+nnoremap <leader><F6> :source $DOTFILESROOT/vim/startup/recommerce.vim<cr>
+nnoremap <leader>t :edit ~/Documents/JS Documents/Personal/VimNotes/TODO.md<cr>
+nnoremap <leader>r :edit ~/Documents/JS Documents/Work/ZeroWaste/Daily Tracker.md<cr>
+nnoremap <leader>g :edit ~/Documents/JS Documents/Work/ZeroWaste/ZW Glossary.md<cr>
+nnoremap <leader>l :edit ~/Documents/JS Documents/Personal/VimNotes/Life Story/Life Story.md<cr>
 " insert date
 nnoremap <leader>d i# <C-R>=strftime("%Y-%m-%d")<CR><Esc>o<Enter>
 
@@ -63,6 +69,10 @@ map <Left> <Nop>
 map <Right> <Nop>
 map <Up> <Nop>
 map <Down> <Nop>
+imap <Left> <Nop>
+imap <Right> <Nop>
+imap <Up> <Nop>
+imap <Down> <Nop>
 
 " to format a buffer which has all SQL in it
 " nnoremap <leader>f :%! pg_format<cr>

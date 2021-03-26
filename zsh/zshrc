@@ -1,5 +1,5 @@
 TERM=xterm-256color
-LC_CTYPE=C 
+LC_CTYPE=C
 LANG=C
 
 if [[ -z $BRAZIL_PLATFORM_OVERRIDE ]] then
@@ -18,7 +18,7 @@ if [[ ${CLOUDDESKTOP} == 1 ]] then
     module_path=($ENV_IMPROVEMENT_ROOT/var/lib/zsh/$ZSH_VERSION/)
     fpath=($ENV_IMPROVEMENT_ROOT/var/zsh/functions/$ZSH_VERSION        \
            $ENV_IMPROVEMENT_ROOT/var/share/zsh/$ZSH_VERSION/functions)
-    
+
     export PATH=
     path=( ~/bin
            ~/usr/bin
@@ -68,7 +68,7 @@ if [[ -z $TMUX ]]; then
     # Default MacOS path looks like this:
     # /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
     # Add a few things to it
-    export PATH=$HOME/Documents/VimNotes/bin:$HOME/.toolbox/bin/:/apollo/env/SDETools/bin:/usr/local/opt/ruby/bin:/usr/local/bin:$PATH
+    export PATH=$HOME/Documents/JS\ Documents/Personal/bin:$HOME/.toolbox/bin/:/apollo/env/SDETools/bin:/usr/local/opt/ruby/bin:/usr/local/bin:$PATH
 fi
 
 # Stars (*) are colored dark blue by default which is hard to see
@@ -114,10 +114,14 @@ bindkey '^f' fzf-file-widget
 bindkey '^y' fzf-cd-widget
 
 # Quick vim startup
-alias v=mvim
-alias tmuxnew='tmux -u new-session -s Mac \; source $DOTFILESROOT/tmux/dev.conf'
+alias v=nvim
+if [[ ${CLOUDDESKTOP} != 1 ]] then
+    alias tmuxnew='tmux -u new-session -s Mac \; source $DOTFILESROOT/tmux/dev.conf'
+else
+    alias tmuxnew='tmux -u new-session -s Cloud \; source $DOTFILESROOT/tmux/dev.conf'
+fi
 # c = Cloud
-alias c='ssh dev-dsk-jhogue-2b-264f79e6.us-west-2.amazon.com'
+alias c='ssh dev-dsk-jhogue-2a-f2890d26.us-west-2.amazon.com'
 alias tc='tmux attach-session -t Cloud'
 
 # using Mac path to get app icon
@@ -152,6 +156,11 @@ alias gr5='git rebase -i HEAD~5'
 alias gr6='git rebase -i HEAD~6'
 alias gd='git diff'
 
+if [[ ${CLOUDDESKTOP} != 1 ]] then
+    alias less=bat
+    alias cat=bat
+fi
+
 # Simple calculator which works by having node evaluate an expression
 # Can be use like:
 #   e "1+2"
@@ -164,3 +173,25 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 export PATH=/opt/miniconda3/bin/:$PATH
+
+# Add node (managed via nvm) to the path
+lazynvm() {
+  unset -f nvm node npm
+  export NVM_DIR=~/.nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+}
+
+nvm() {
+  lazynvm
+  nvm $@
+}
+
+node() {
+  lazynvm
+  node $@
+}
+
+npm() {
+  lazynvm
+  npm $@
+}
