@@ -161,6 +161,8 @@ alias gr5='git rebase -i HEAD~5'
 alias gr6='git rebase -i HEAD~6'
 alias gd='git diff'
 
+edit() { atom "$@" && open -a atom; }
+
 if [[ ${CLOUDDESKTOP} != 1 ]] then
     alias less=bat
     alias cat=bat
