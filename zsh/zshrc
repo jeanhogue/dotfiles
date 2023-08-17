@@ -44,9 +44,9 @@ if [[ ${CLOUDDESKTOP} == 1 ]] then
     DISABLE_AUTO_UPDATE="true"
 fi
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Which plugins to load (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(zsh-autosuggestions zsh-syntax-highlighting autojump) # removed git from the list
+plugins=(zsh-autosuggestions fast-syntax-highlighting autojump)
 
 ZSH_THEME="robbyrussell"
 
@@ -62,19 +62,15 @@ else
 fi
 
 # Right prompt to show timestamp. See https://linux.die.net/man/1/zshmisc
-RPROMPT="%{$fg_bold[blue]%}[%D{%Y/%m/%d} %*]%{$reset_color%}"
+# RPROMPT="%{$fg_bold[blue]%}[%D{%Y/%m/%d} %*]%{$reset_color%}"
 
 # Only set PATH if not in tmux - otherwise it duplicates entries
 if [[ -z $TMUX ]]; then
     # Default MacOS path looks like this:
     # /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
     # Add a few things to it
-    export PATH=$HOME/Documents/JS\ Documents/Personal/bin:$HOME/.toolbox/bin/:/apollo/env/SDETools/bin:/usr/local/opt/ruby/bin:/usr/local/bin:$PATH
-fi
-
-# Stars (*) are colored dark blue by default which is hard to see
-if [[ ${CLOUDDESKTOP} != 1 ]] then
-    ZSH_HIGHLIGHT_STYLES[globbing]=fg=blue,bold
+    export PATH=$HOME/.toolbox/bin/:/apollo/env/SDETools/bin:/usr/local/opt/ruby/bin:/usr/local/bin:$PATH
+    export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin/"
 fi
 
 # When pasting text, no need to highlight
@@ -114,12 +110,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 bindkey '^f' fzf-file-widget
 bindkey '^y' fzf-cd-widget
 
-# Quick vim startup
-if [[ ${CLOUDDESKTOP} != 1 ]] then
-    alias v=nvim
-else
-    alias v=vim
-fi
 if [[ ${CLOUDDESKTOP} != 1 ]] then
     alias tmuxnew='tmux -u new-session -s Mac \; source $DOTFILESROOT/tmux/dev.conf'
 else
@@ -133,26 +123,14 @@ alias tc='tmux attach-session -t Cloud'
 alias alac="/Applications/Alacritty.app/Contents/MacOS/alacritty --config-file ~/dotfiles/alacritty/cloud.yml -e $SHELL -c 'ssh dev-dsk-jhogue-2b-264f79e6.us-west-2.amazon.com; $SHELL' &; disown"
 alias alam='/Applications/Alacritty.app/Contents/MacOS/alacritty --config-file ~/dotfiles/alacritty/mac.yml &; disown'
 
-alias odin="ssh -L 2009:localhost:2009 dev-dsk-jhogue-2b-264f79e6.us-west-2.amazon.com -f -N"
-
 alias b=brazil-build
-alias bs='brazil-build server'
-alias bq='brazil-build quick_build'
-alias bbit='brazil-build test-integration-assert'
-alias bba='brazil-recursive-cmd --allPackages brazil-build'
-alias bcl='brazil-build clean'
-alias bca='brazil-recursive-cmd --allPackages --reverse brazil-build clean'
 alias bvs='brazil vs'
 alias bws='brazil ws'
-alias sam="brazil-build-tool-exec sam"
 
 alias gitlog="git log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias gs='git status'
-alias gb='git branch'
 alias ga='git add .'
 alias gc='git commit -m w '
-alias gco='git status -s | fzf -m | cut -d" " -f3 | xargs git checkout'
-alias gaf='git status -s | fzf -m | cut -d" " -f3 | xargs git add'
 alias gsh='git show $(git log --pretty=oneline --abbrev-commit | fzf | cut -d " " -f 1)'
 alias gr='git rebase -i HEAD~2'
 alias gr3='git rebase -i HEAD~3'
@@ -161,44 +139,8 @@ alias gr5='git rebase -i HEAD~5'
 alias gr6='git rebase -i HEAD~6'
 alias gd='git diff'
 
-edit() { atom "$@" && open -a atom; }
-
-if [[ ${CLOUDDESKTOP} != 1 ]] then
-    alias less=bat
-    alias cat=bat
-fi
-
-# Simple calculator which works by having node evaluate an expression
-# Can be use like:
-#   e "1+2"
-e() {
-    node -p "$1"
-}
-
 # Python stuff
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 export PATH=/opt/miniconda3/bin/:$PATH
-
-# Add node (managed via nvm) to the path
-lazynvm() {
-  unset -f nvm node npm
-  export NVM_DIR=~/.nvm
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-}
-
-nvm() {
-  lazynvm
-  nvm $@
-}
-
-node() {
-  lazynvm
-  node $@
-}
-
-npm() {
-  lazynvm
-  npm $@
-}
